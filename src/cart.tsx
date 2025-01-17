@@ -4,7 +4,19 @@ import "./css/cart.css";
 import { observer } from "mobx-react-lite";
 
 const Cart: React.FC = observer(() => {
-  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = store;
+  const { cart } = store;
+
+  const handleRemoveFromCart = (id: string) => {
+    store.removeFromCart(id);
+  };
+
+  const handleIncreaseQuantity = (id: string) => {
+    store.increaseQuantity(id);
+  };
+
+  const handleDecreaseQuantity = (id: string) => {
+    store.decreaseQuantity(id);
+  };
 
   return (
     <div className="cart-container">
@@ -21,21 +33,21 @@ const Cart: React.FC = observer(() => {
               </div>
               <div className="quantity-controls">
                 <button
-                  onClick={() => decreaseQuantity(item.id)}
+                  onClick={() => handleDecreaseQuantity(item.id)}
                   className="quantity-button"
                 >
                   -
                 </button>
                 <span className="item-quantity">{item.quantity}</span>
                 <button
-                  onClick={() => increaseQuantity(item.id)}
+                  onClick={() => handleIncreaseQuantity(item.id)}
                   className="quantity-button"
                 >
                   +
                 </button>
               </div>
               <button
-                onClick={() => removeFromCart(item.id)}
+                onClick={() => handleRemoveFromCart(item.id)}
                 className="remove-button"
               >
                 Удалить

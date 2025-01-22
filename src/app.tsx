@@ -3,7 +3,7 @@ import Product from "./product";
 import Cart from "./cart";
 import store from "./store";
 import products from "./mocks/products";
-import { CartItem } from "./types/types";
+import { CartItem } from "./types";
 import { observer } from "mobx-react-lite";
 
 const App: React.FC = observer(() => {

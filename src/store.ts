@@ -1,5 +1,5 @@
-import { makeAutoObservable } from "mobx";
-import { CartItem, Product } from "./types";
+import { makeAutoObservable } from 'mobx';
+import { CartItem, Product } from './types';
 
 class Store {
   products: Product[] = [];

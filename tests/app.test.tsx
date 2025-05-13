@@ -1,9 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import { expect } from 'chai';
 import App from '../src/app';
 import store from '../src/store';
 
 describe('App Component', () => {
-  test('рендерит карточки продуктов после загрузки продуктов', async () => {
+  it('рендерит карточки продуктов после загрузки продуктов', async () => {
     store.setProducts([
       { id: '1', name: 'Test Product', price: 100 },
       { id: '2', name: 'Another Product', price: 200 },
@@ -11,12 +12,11 @@ describe('App Component', () => {
 
     render(<App />);
 
-    expect(screen.getByText(/Интернет-магазин/i)).toBeInTheDocument();
+    assert.exists(screen.getByText(/Интернет-магазин/i));
 
     await waitFor(() => {
-      expect(screen.getAllByText(/Добавить в корзину/i).length).toBeGreaterThan(
-        0,
-      );
+      const buttons = screen.queryAllByText(/Добавить в корзину/i);
+      expect(buttons.length).to.be.greaterThan(0);
     });
   });
 });
